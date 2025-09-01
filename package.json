@@ -6,7 +6,7 @@
 "scripts": {
   "start": "node server.js",
   "deploy": "node setup_db.js && node server.js"
-  },
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
