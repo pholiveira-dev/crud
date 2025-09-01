@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -18,7 +18,7 @@ app.use(routes);
 
 // Vai ser um CRUD de Produtos
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Servidor em: http://localhost:${PORT}`);
