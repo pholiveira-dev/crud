@@ -2,9 +2,9 @@
   "name": "lista-compras",
   "version": "1.0.0",
   "description": "Lista de compras Pedro e Gabi",
-  "main": "servers.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon servers.js"
+    "start": "node app.js"
   },
   "engines": {
     "node": "20.x"
