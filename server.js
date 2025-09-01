@@ -18,7 +18,7 @@ app.use(routes);
 
 // Vai ser um CRUD de Produtos
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.listen(PORT, () => {
     console.log(`Servidor em: http://localhost:${PORT}`);
