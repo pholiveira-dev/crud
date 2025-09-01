@@ -1,10 +1,16 @@
 const pool  = require('../../config/db');
 
 exports.allProducts = async (req, res) => {
-    
     try {
-        const result = await pool.query('SELECT * FROM produto ORDER BY id_produto ASC')
-        res.render('index', { produtos: result.rows });
+        const result = await pool.query('SELECT * FROM produto ORDER BY id_produto ASC');
+
+        // Converta o preço para um número antes de renderizar a view
+        const produtos = result.rows.map(produto => ({
+            ...produto,
+            preco: parseFloat(produto.preco)
+        }));
+
+        res.render('index', { produtos });
     } catch (error) {
         res.status(500).send(error.message);
     }
