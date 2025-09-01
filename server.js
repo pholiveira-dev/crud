@@ -1,7 +1,11 @@
+// server.js
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
+
+// Importe a função createTable do seu arquivo db.js
+const { createTable } = require('./config/db');
 
 // Configuração de Middlewares:
 app.use(express.json());
@@ -16,10 +20,13 @@ app.set('views', path.join(__dirname, 'src', 'views'));
 const routes = require('./routes');
 app.use(routes);
 
-// Vai ser um CRUD de Produtos
-
 const PORT = 3000;
 
-app.listen(PORT, () => {
-    console.log(`Servidor em: http://localhost:${PORT}`);
+// Chame createTable() e, quando ela for resolvida, inicie o servidor
+createTable().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Servidor em: http://localhost:${PORT}`);
+    });
+}).catch(error => {
+    console.error('Falha ao iniciar o servidor:', error);
 });
