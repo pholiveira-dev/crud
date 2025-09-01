@@ -1,19 +1,24 @@
 // server.js
-
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const app = express();
 
-// ... sua configuração de Middlewares e Views
+// Configuração de Middlewares:
+app.use(express.json());
+app.use(express.urlencoded({ extended:true }));
+app.use(express.static('public'));
+
+// Configuração de Views:
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'src', 'views'));
 
 // Configuração de rota:
 const routes = require('./routes');
 app.use(routes);
 
-// ... seu código de CRUD (que continua igual)
-
-const PORT = 3000;
+// O servidor escuta diretamente na porta, sem esperar por nada.
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Servidor em: http://localhost:${PORT}`);

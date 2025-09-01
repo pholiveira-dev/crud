@@ -1,8 +1,7 @@
 // setup_db.js
-
+require('dotenv').config();
 const { Pool } = require('pg');
 
-// Conexão com o banco de dados
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
@@ -15,7 +14,6 @@ const createTable = async () => {
   try {
     console.log('Iniciando script de migração...');
     client = await pool.connect();
-
     const query = `
       CREATE TABLE IF NOT EXISTS produto (
         id_produto SERIAL PRIMARY KEY,
@@ -35,7 +33,7 @@ const createTable = async () => {
     if (client) {
         client.release();
     }
-    await pool.end(); // Fecha o pool de conexões
+    await pool.end();
   }
 };
 
