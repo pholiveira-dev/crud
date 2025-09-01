@@ -1,20 +1,17 @@
 {
-  "name": "crud",
+  "name": "lista-compras",
   "version": "1.0.0",
-  "description": "",
-  "main": "routes.js",
+  "description": "Lista de compras Pedro e Gabi",
+  "main": "servers.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon servers.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
-    "dotenv": "^17.2.1",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "nodemon": "^3.1.10",
-    "pg": "^8.16.3"
+    "express": "^4.18.2",
+    "ejs": "^3.1.9",
+    "pg": "^8.11.1"
   }
 }
