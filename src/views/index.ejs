@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Compras Pedro e Gabi</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>🛒 Lista de Compras Pedro e Gabi</h1>
+
+  <!-- Formulário para adicionar item -->
+  <form action="/add" method="POST" class="form-add">
+    <input type="text" name="nome" placeholder="Produto" required>
+    <input type="number" name="preco" placeholder="Preço (R$)" step="0.01" required>
+    <input type="number" name="quantidade" placeholder="Quantidade" required>
+    <input type="text" name="descricao" placeholder="Observações (opcional)">
+    <button type="submit">➕ Adicionar</button>
+  </form>
+
+  <ul class="lista">
+    <% produtos.forEach(produto => { %>
+      <li class="item">
+        <div class="info">
+          <strong><%= produto.nome %></strong>  
+          - R$ <%= produto.preco.toFixed(2) %>
+          - Qtd: <%= produto.quantidade %>  
+          <% if (produto.descricao) { %>
+            - <em><%= produto.descricao %></em>
+          <% } %>
+        </div>
+
+        <div class="acoes">
+          <a href="/delete/<%= produto.id_produto %>" class="btn-excluir">❌ Excluir</a>
+
+          <!-- Form de edição -->
+          <form action="/edit/<%= produto.id_produto %>" method="POST" class="form-edit">
+            <input type="text" name="nome" value="<%= produto.nome %>">
+            <input type="number" name="preco" value="<%= produto.preco %>" step="0.01">
+            <input type="number" name="quantidade" value="<%= produto.quantidade %>">
+            <input type="text" name="descricao" value="<%= produto.descricao %>">
+            <button type="submit">💾 Salvar</button>
+          </form>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
